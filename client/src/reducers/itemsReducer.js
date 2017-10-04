@@ -43,6 +43,17 @@ const itemReducer = (state=initialState, action) => {
         items: action.payload
       })
     }
+    case "DATE_CHANGE": {
+      return Object.assign({}, state, {
+        startDate: action.payload[0],
+        endDate: action.payload[1],
+      })
+    }
+    case "FOCUS_CHANGE": {
+      return Object.assign({}, state, {
+        focusedInput: action.payload
+      })
+    }
     default: {
       return state;
     }
