@@ -1,11 +1,43 @@
 import React, { Component } from 'react';
 import { BrowserRouter,Redirect, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as authActions from '../actions/authActions';
+
 
 class Login extends Component {
 
   constructor(props) {
     super(props)
   }
+
+    //Add login event
+    authWithEmailPassword() {
+      const email = document.getElementById('txtEmail').value;
+      const pw = document.getElementById('txtPassword').value;
+      const userData = null;
+      const authDomain = firebase.auth();
+  
+      document.getElementById('txtEmail').value = '';
+      document.getElementById('txtPassword').value = '';
+    }
+  
+    logout() {
+    }
+  
+    //Sign up
+    signUp () {
+      const newName = document.getElementById('newName').value;
+      const newEmail = document.getElementById('newEmail').value;
+      const newPw = document.getElementById('newPw').value;
+      const confPw = document.getElementById('confPw').value;
+  
+      if (newPw === confPw) {
+  
+      } else {
+        alert('Please make sure both passwords match');
+      }
+    }
 
   render() {
     // Redirect if authenticated
@@ -72,4 +104,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const loginDispatch = (dispatch) => {
+  return {
+    actions: bindActionCreators(authActions, dispatch)
+  }
+};
+
+export default connect(null, loginDispatch)(Login);
+
+// export default Login;

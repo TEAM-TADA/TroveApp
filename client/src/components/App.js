@@ -44,77 +44,7 @@ class App extends Component {
     })
   }
 
-  //Add login event
-  authWithEmailPassword() {
-    const email = document.getElementById('txtEmail').value;
-    const pw = document.getElementById('txtPassword').value;
-    const userData = null;
-    const authDomain = firebase.auth();
 
-    // auth.signInWithEmailAndPassword(email, pw)
-    //   .then((result) => {
-    //     console.log('logged in')
-    //     axios.get(`/api/user/${email}`)
-    //     .then(({data}) => {
-    //       this.setState({
-    //         authenticated: true,
-    //         user: result,
-    //         sqlUser: data
-    //       })
-    //     })
-    //     .catch(err => console.log('error in axios: ', err.message));
-    //   })
-    //   .catch(err => alert(err.message));
-
-    document.getElementById('txtEmail').value = '';
-    document.getElementById('txtPassword').value = '';
-  }
-
-  // logout() {
-  //   auth.signOut()
-  //     .then(() => {
-  //       console.log('signed out')
-  //       this.setState({
-  //         authenticated: false,
-  //         user: null,
-  //         sqlUser: null,
-  //         cart: localStorage.setItem('cart', JSON.stringify([]))
-  //       })
-  //       console.log('state on logout: ', this.state);        
-  //     })
-  //     .catch(err => alert(err.message));
-  // }
-
-  //Sign up
-  signUp () {
-    const newName = document.getElementById('newName').value;
-    const newEmail = document.getElementById('newEmail').value;
-    const newPw = document.getElementById('newPw').value;
-    const confPw = document.getElementById('confPw').value;
-
-    if (newPw === confPw) {
-      // auth.createUserWithEmailAndPassword(newEmail, newPw)
-      //   .then((result) => {
-      //     console.log('signed up')
-      //     axios.post('/api/user', {
-      //       userName: newName,
-      //       userEmail: newEmail
-      //     })
-      //     .then(({data}) => {
-      //       this.setState({
-      //         authenticated: true,
-      //         user: result,
-      //         sqlUser: data
-      //       })
-      //       alert('Account successfully created!')
-      //     })
-      //     .catch(err => alert(err.message));
-      //   })
-      //   .catch(err => alert(err.message));
-    } else {
-      alert('Please make sure both passwords match');
-    }
-  }
 
   render() {
     const { itemActions, cartActions, history } = this.props;
