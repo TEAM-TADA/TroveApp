@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import HomeFeatureItem from './HomeFeatureItem';
 import Loading from '../../components/Loading';
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { items } = this.props;
     return (
       <div>
       <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -49,12 +56,11 @@ class Home extends Component {
           <span>FEATURED</span>
         </div>
         <div className='row'>
-          {!this.props.passItems ? <Loading /> : this.props.passItems.map((featureItem) => {
+          {!items ? <Loading /> : items.map((featureItem) => {
             if(featureItem.id < 7) {
               return <HomeFeatureItem 
               featureItem={featureItem} 
-              key={featureItem.id} 
-              checkUser={this.props.checkUser} />
+              key={featureItem.id} />
             }
           }).reverse()}
         </div>
@@ -64,4 +70,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const homeState = (store) => {
+  return {
+    items: store.Item.items,
+  }
+}
+
+export default connect(homeState, null)(Home);

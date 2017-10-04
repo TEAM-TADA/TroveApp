@@ -1,4 +1,4 @@
-initialState = {
+const initialState = {
   cart: [],
   viewCart: false,
 };
@@ -37,3 +37,5 @@ const cartReducer = (state=initialState, action) => {
     }
   }
 }
+
+export default cartReducer;

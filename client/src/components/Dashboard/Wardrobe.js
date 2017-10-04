@@ -43,7 +43,7 @@ class Wardrobe extends Component {
 const wardrobeState = (store) => {
   return {
     user: this.props.user, // UPDATE THIS WHEN AUTH REDUX IS DONE
-    items: this.props.items // UPDATE THIS WHEN ITEMS REDUX IS DONE
+    items: this.Item.items
   };
 };
 

@@ -30,7 +30,7 @@ class UserWardrobe extends Component {
 const userWardrobeState = (store) => {
   return {
     user: this.props.user, // UPDATE!
-    items: this.props.items // UPDATE!
+    items: store.Item.items
   };
 };
 

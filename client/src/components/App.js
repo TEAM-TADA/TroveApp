@@ -17,6 +17,7 @@ import SearchResult from './Search/SearchResult';
 import UserWardrobe from './UserWardrobe/UserWardrobe';
 
 import * as cartActions from '../actions/cartActions';
+import * as itemActions from '../actions/itemsAction';
 
 class App extends Component {
   constructor(props) {
@@ -24,18 +25,19 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.itemActions.fetchItems();
     auth.onAuthStateChanged((user) => {
       if(user) {
         console.log(user.email);
-        axios.get(`/api/user/${user.email}`)
-        .then(({data}) => {
-          this.setState({
-            authenticated: true,
-            user: user,
-            sqlUser: data,
-            userId: data.id
-          })
-        })
+        // axios.get(`/api/user/${user.email}`)
+        // .then(({data}) => {
+        //   this.setState({
+        //     authenticated: true,
+        //     user: user,
+        //     sqlUser: data,
+        //     userId: data.id
+        //   })
+        // })
       } else {
         console.log('not logged in')
       }
@@ -115,10 +117,10 @@ class App extends Component {
   }
 
   render() {
-    const { cartActions } = this.props;
+    const { itemActions, cartActions, history } = this.props;
 
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <div>
             <NavBar />
@@ -128,12 +130,12 @@ class App extends Component {
             <Route exact path='/' component={() => (
               <Home />)} />
             <Route exact path='/men' component={() => (
-              <Men items={items} addToCart={cartActions.addToCart} checkUser={/*Fill in when done*/} />)} />
+              <Men />)} />
             <Route exact path='/women' component={() => (
-              <Women items={items} addToCart={cartActions.addToCart} checkUser={/*Fill in when done*/}/>)} />
-            <Route exact path='/account' component={() => (<Dashboard />)} />
-            <Route exact path='/wardrobe' component={() => (<Dashboard />)} />
-            <Route exact path='/archive' component={() => (<Dashboard />)} />
+              <Women />)} />
+            <Route exact path='/account' component={() => (<Dashboard history={history} />)} />
+            <Route exact path='/wardrobe' component={() => (<Dashboard history={history} />)} />
+            <Route exact path='/archive' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/login' component={() => (<Login />)} />
             <Route exact path='/item/:item_id' component={Item} />
             <Route exact path='/search' component={() => (<SearchResult results={results} addToCart={cartActions.addToCart}/>)} />
@@ -160,6 +162,7 @@ class App extends Component {
 
 const appDispatch = (dispatch) => {
   return {
+    itemActions: bindActionCreators(itemActions, dispatch),
     cartActions: bindActionCreators(cartActions, dispatch)
   };
 };

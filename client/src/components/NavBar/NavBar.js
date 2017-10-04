@@ -25,7 +25,7 @@ class NavBar extends Component {
 
   render() {
 
-    const searchInput = document.getElementById('searchInput').value; 
+    let searchInput = document.getElementById('searchInput') ? document.getElementById('searchInput').value : ''; 
 
     console.log('this is nav cart: ', this.props)
 

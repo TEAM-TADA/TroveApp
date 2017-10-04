@@ -17,10 +17,10 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { user, items } = this.props;
+    const { user, items, history } = this.props;
 
     return (
-      <Router>
+      <Router history={history}>
         <div className='dashboard'>
           <div className='col-md-3'>
             <div className='dashboard-wrap my-account-section'>
@@ -61,7 +61,7 @@ class Dashboard extends Component {
 const dashboardState = (store) => {
   return {
     user: this.props.sqlUser, // UPDATE THIS WHEN AUTH-REDUX IS DONE
-    items: this.props.allitems // UPDATE THIS WHEN ITEM-REDUX IS DONE
+    items: store.Item.items
   };
 };
 

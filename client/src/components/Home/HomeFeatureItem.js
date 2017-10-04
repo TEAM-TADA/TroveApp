@@ -3,20 +3,25 @@ import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading';
 
 class HomeFeatureItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { featureItem } = this.props;
     return (
       <div className='col-md-4 wow fadeIn animated'>
-        <Link to={{pathname: `/item/${this.props.featureItem.id}`, params: {itemInfo: this.props.featureItem, addToCart: this.props.addToCart, checkUser: this.props.checkUser}}}>
+        <Link to={{pathname: `/item/${featureItem.id}`, params: {itemInfo: featureItem}}}>
           <div className='feature-section-wrap'>
             <div className='feature-section-picture'>
-              <img src={this.props.featureItem.image}></img>
+              <img src={featureItem.image}></img>
             </div>
             <div className='feature-info'>
               <div>
-                {this.props.featureItem.brand}
+                {featureItem.brand}
               </div>
               <div>
-                {this.props.featureItem.itemname}
+                {featureItem.itemname}
               </div>
             </div>
           </div>

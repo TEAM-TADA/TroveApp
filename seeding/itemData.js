@@ -8,7 +8,7 @@ module.exports = [
     price: 4200.01,
     size: 'Medium',
     sex: 'M',
-    tag: '["jacket", "bomber", "wool", "red", "gucci"]',
+    tag: ["jacket", "bomber", "wool", "red", "gucci"],
     status: 'Available'
   },
   {
@@ -19,7 +19,7 @@ module.exports = [
     price: 2690.99,
     size: 'Medium',
     sex: 'M',
-    tag: '["jacket", "lightweight", "varsity", "floral", "black"]',
+    tag: ["jacket", "lightweight", "varsity", "floral", "black"],
     status: 'Available'
   },
   {
@@ -30,7 +30,7 @@ module.exports = [
     price: 690.00,
     size: 'Small',
     sex: 'M',
-    tag: '["cotton", "t-shirt", "jersey", "pocket", "cheap"]',
+    tag: ["cotton", "t-shirt", "jersey", "pocket", "cheap"],
     status: 'Available'
   },
   {
@@ -41,7 +41,7 @@ module.exports = [
     price: 550.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["t-shirt", "black", "swag", "patches"]',
+    tag: ["t-shirt", "black", "swag", "patches"],
     status: 'Available'
   },
   {
@@ -52,7 +52,7 @@ module.exports = [
     price: 4100.00,
     size: 'Large',
     sex: 'M',
-    tag: '["coat", "parka", "cotton", "hoodie", "cold"]',
+    tag: ["coat", "parka", "cotton", "hoodie", "cold"],
     status: 'Available'
   },
   {
@@ -63,7 +63,7 @@ module.exports = [
     price: 550.00,
     size: 'Large',
     sex: 'M',
-    tag: '["t-shirt", "white", "gucci", "relaxed"]',
+    tag: ["t-shirt", "white", "gucci", "relaxed"],
     status: 'Available'
   },
   {
@@ -74,7 +74,7 @@ module.exports = [
     price: 1195.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["jacket", "bomber", "brown", "G-1", "classic"]',
+    tag: ["jacket", "bomber", "brown", "G-1", "classic"],
     status: 'Available'
   },
 
@@ -86,7 +86,7 @@ module.exports = [
     price: 3980.00,
     size: '38',
     sex: 'F',
-    tag: '["lace", "dress", "jeweled", "ruffle"]',
+    tag: ["lace", "dress", "jeweled", "ruffle"],
     status: 'Available'
   },
   {
@@ -97,7 +97,7 @@ module.exports = [
     price: 3900.00,
     size: 'Small',
     sex: 'F',
-    tag: '["dress", "unlined", "a-line", "back-zip"]',
+    tag: ["dress", "unlined", "a-line", "back-zip"],
     status: 'Available'
   },
   {
@@ -108,7 +108,7 @@ module.exports = [
     price: 1800.00,
     size: '36',
     sex: 'F',
-    tag: '["butterfly", "dress", "floral", "ruffle", "print"]',
+    tag: ["butterfly", "dress", "floral", "ruffle", "print"],
     status: 'Available'
   },
   {
@@ -119,7 +119,7 @@ module.exports = [
     price: 3190.00,
     size: '36',
     sex: 'F',
-    tag: '["dress", "one-shoulder", "black", "lace"]',
+    tag: ["dress", "one-shoulder", "black", "lace"],
     status: 'Available'
   },
   {
@@ -130,7 +130,7 @@ module.exports = [
     price: 4990.00,
     size: '38',
     sex: 'F',
-    tag: '["wool", "silk", "overcoat"]',
+    tag: ["wool", "silk", "overcoat"],
     status: 'Available'
   },
   {
@@ -141,7 +141,7 @@ module.exports = [
     price: 1410.00,
     size: '34',
     sex: 'F',
-    tag: '["graphic", "shirt", "print", "chain"]',
+    tag: ["graphic", "shirt", "print", "chain"],
     status: 'Available'
   },
   {
@@ -152,7 +152,7 @@ module.exports = [
     price: 1160.00,
     size: 'Small',
     sex: 'F',
-    tag: '["long-sleeve", "black", "print"]',
+    tag: ["long-sleeve", "black", "print"],
     status: 'Available'
   },
   {
@@ -163,7 +163,7 @@ module.exports = [
     price: 1525.00,
     size: '38',
     sex: 'F',
-    tag: '["double-knit", "bi-color", "crew-neck"]',
+    tag: ["double-knit", "bi-color", "crew-neck"],
     status: 'Available'
   },
 
@@ -175,7 +175,7 @@ module.exports = [
     price: 1975.00,
     size: '48',
     sex: 'M',
-    tag: '["jacket", "print", "bluette", "hooded", "colorful"]',
+    tag: ["jacket", "print", "bluette", "hooded", "colorful"],
     status: 'Available'
   },
   {
@@ -186,7 +186,7 @@ module.exports = [
     price: 2850.00,
     size: '48',
     sex: 'M',
-    tag: '["jacket", "bomber", "hooded", "colorful", "leather"]',
+    tag: ["jacket", "bomber", "hooded", "colorful", "leather"],
     status: 'Available'
   },
   {
@@ -197,7 +197,7 @@ module.exports = [
     price: 835.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["shirt", "print"]',
+    tag: ["shirt", "print"],
     status: 'Available'
   },
   {
@@ -208,7 +208,7 @@ module.exports = [
     price: 2700.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["jacket", "lightweight", "varsity"]',
+    tag: ["jacket", "lightweight", "varsity"],
     status: 'Available'
   },
   {
@@ -219,7 +219,7 @@ module.exports = [
     price: 4810.00,
     size: 'Small',
     sex: 'M',
-    tag: '["tan", "bomber", "jacket"]',
+    tag: ["tan", "bomber", "jacket"],
     status: 'Available'
   },
   {
@@ -230,7 +230,7 @@ module.exports = [
     price: 640.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["t-shirt", "white", "short-sleeves"]',
+    tag: ["t-shirt", "white", "short-sleeves"],
     status: 'Available'
   },
   {
@@ -241,7 +241,7 @@ module.exports = [
     price: 550.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["polo", "shirt"]',
+    tag: ["polo", "shirt"],
     status: 'Available'
   },
   {
@@ -252,7 +252,7 @@ module.exports = [
     price: 1690.00,
     size: 'Large',
     sex: 'M',
-    tag: '["sweater", "wool", "knit"]',
+    tag: ["sweater", "wool", "knit"],
     status: 'Available'
   },
   {
@@ -263,7 +263,7 @@ module.exports = [
     price: 1200.00,
     size: 'Medium',
     sex: 'M',
-    tag: '["black", "hoodie"]',
+    tag: ["black", "hoodie"],
     status: 'Available'
   },
   
