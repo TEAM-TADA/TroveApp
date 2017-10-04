@@ -109,13 +109,13 @@ class NavBar extends Component {
                         <p>
                           <Checkout
                             cart={cart}
-                           /* emptyCart={this.emptyCart}
+                            emptyCart={this.emptyCart}
                             renterId={this.props.renterId}
                             label={'Check Out'}
                             name={'Hey there, hottie'}
                             description={'Trove'}
                             amount={this.totalPrice(cart)} //in dollars
-                            length={cart.length}*/
+                            length={cart.length}
                           />
                         </p>
                       </div>
