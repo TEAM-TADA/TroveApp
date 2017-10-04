@@ -7,21 +7,21 @@ class WomenItem extends Component {
   render() {
     return (
       <div className='col-md-3 wow fadeIn animated'>
-        <Link to={{pathname: `/item/${this.props.passItem.id}`, params: {itemInfo: this.props.passItem, addToCart: this.props.addToCart, checkUser: this.props.checkUser}}}>
+        <Link to={{pathname: `/item/${this.props.item.id}`, params: {itemInfo: this.props.item, addToCart: this.props.addToCart, checkUser: this.props.checkUser}}}>
           <div className='list-section-wrap'>
             <div className='list-section-picture'>
-              <img src={this.props.passItem.image}></img>
+              <img src={this.props.item.image}></img>
             </div>
             <div className='list-info'>
               <div>
-                {this.props.passItem.brand}
+                {this.props.item.brand}
               </div>
               <div className='list-item-name'>
-                {this.props.passItem.itemname}
+                {this.props.item.itemname}
               </div>
               <div>
-                <span className='list-price-retail line-through'> ${this.props.passItem.price} </span>
-                <span className='list-price-rental'> ${Math.floor(this.props.passItem.price * 0.07)} </span>
+                <span className='list-price-retail line-through'> ${this.props.item.price} </span>
+                <span className='list-price-rental'> ${Math.floor(this.props.item.price * 0.07)} </span>
               </div>
             </div>
           </div>

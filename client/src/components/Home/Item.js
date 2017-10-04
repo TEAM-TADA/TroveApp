@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import moment from 'moment'
 
+import * as itemActions from '../../actions/itemsAction';
+
 class Item extends Component {
   constructor(props) {
     super(props);
@@ -93,7 +95,7 @@ class Item extends Component {
             </Link>
             <hr className="col-md-12"></hr>
             <div className='item-price'>
-              <span className='line-through list-price-retail'> ${this.props.state.itemInfo.price} </span>
+              <span className='line-through list-price-retail'> ${this.props.itemInfo.price} </span>
               <span> ${Math.floor(this.props.itemInfo.price * 0.07)} </span>
             </div>
             <div className='item-size'>
@@ -107,9 +109,9 @@ class Item extends Component {
                 minimumNights={this.props.minimumNights}
                 startDate={this.props.startDate} 
                 endDate={this.props.endDate} 
-                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} //?? 
+                onDatesChange={this.props.actions.dateChange({startDate, endDate})} 
                 focusedInput={this.props.focusedInput} 
-                onFocusChange={focusedInput => this.setState({ focusedInput })}  //???
+                onFocusChange={this.props.actions.focusChange({ focusedInput })}
                 />
             </div>
             <ul className='item-tags'>
@@ -119,13 +121,13 @@ class Item extends Component {
             <div className='item-btn'>
               <button className='btn btn-block item-btn-color' 
                 onClick={() => {
-                  if(startDate === nul || endDate === null) {
+                  if(this.props.startDate === null || this.props.endDate === null) {
                     for(let i = 0; i < cart.length; i++) {
                       if(item.id === cart[i].id) {
                         return alert('You already have this item in your cart');
                       }
                     }
-                    actions.addToCart(item, startDate, endDate);
+                    actions.addToCart(item, this.props.startDate, this.props.endDate);
                   }
                 }}
                 type="button"

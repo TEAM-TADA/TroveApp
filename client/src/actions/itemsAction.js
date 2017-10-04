@@ -19,7 +19,7 @@ export const fetchDates = (itemInfo) => {
   }
 }
 
-export const fetchUser = () => {
+export const fetchUser = (itemInfo) => {
   return function(dispatch) {
     axios.get(`/api/user/owner/${itemInfo.rentee_id}`)
     .then(user => {
@@ -29,6 +29,15 @@ export const fetchUser = () => {
       dispatch({type: 'FETCH_USER_REJECTED', payload: err})
     })
   }
+}
+
+export const dateChange = (startDate, endDate) => {
+  const dates = [startDate, endDate];
+  dispatch({type: 'DATE_CHANGE', payload: dates});
+}
+
+export const focusChange = (focusedInput) => {
+  dispatch({type: 'FOCUS_CHANGE', payload: focusedInput});
 }
 
 export const fetchItems = () => {

@@ -14,10 +14,10 @@ class Men extends Component {
           <span>MEN</span>
         </div>
         <div className='row'>
-          {!this.props.passItems ? <Loading /> : this.props.passItems.map(item => 
+          {!this.props.items ? <Loading /> : this.props.items.map(item => 
             { if(item.sex === 'M') {
               return <MenItem 
-              passItem={item} 
+              item={item} 
               addToCart={this.props.addToCart} 
               checkUser={this.props.checkUser}
               key={item.id} />}
