@@ -1,4 +1,4 @@
-const { Rent_trx } = require('../../db/model/dataModel');
+const { Rent_trx, Item } = require('../../db/model/dataModel');
 
 module.exports = {
   addTrx: (req, res) => {
@@ -38,7 +38,8 @@ module.exports = {
     Rent_trx.findAll({
       where: {
         renterId: req.params.renter_id
-      }
+      },
+      include: [ Item ]
     })
     .then(data => {
       res.status(201).send(data)

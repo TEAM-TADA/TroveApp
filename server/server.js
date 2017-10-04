@@ -9,14 +9,15 @@ const route = require('../server/router/routes')
 const PORT = 3000;
 
 const app = express()
-.use(parser.json())
-.use(parser.urlencoded({extended: true}))
-.use(morgan('dev'))
-.use('/api', route)
-.use(express.static(path.resolve(__dirname, '../client/static')))
-.get('/*', function (req, res) {
+app.use(parser.json())
+app.use(parser.urlencoded({extended: true}))
+app.use(morgan('dev'))
+app.use('/api', route)
+app.use(express.static(path.resolve(__dirname, '../client/static')))
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/static', 'index.html'));
 })
-.listen(PORT, function(){
+
+app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
