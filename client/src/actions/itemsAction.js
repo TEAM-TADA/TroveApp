@@ -33,11 +33,15 @@ export const fetchUser = (itemInfo) => {
 
 export const dateChange = (startDate, endDate) => {
   const dates = [startDate, endDate];
-  dispatch({type: 'DATE_CHANGE', payload: dates});
+  return function(dispatch) {
+    dispatch({type: 'DATE_CHANGE', payload: dates});
+  }
 }
 
 export const focusChange = (focusedInput) => {
-  dispatch({type: 'FOCUS_CHANGE', payload: focusedInput});
+  return function(dispatch) {
+    dispatch({type: 'FOCUS_CHANGE', payload: focusedInput});
+  }
 }
 
 export const fetchItems = () => {

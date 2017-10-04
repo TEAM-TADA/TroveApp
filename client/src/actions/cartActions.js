@@ -9,13 +9,19 @@ export const removeFromCart = (itemId) => {
 }
 
 export const showCart = () => {
-  dispatch({type: 'SHOW_CART'});
+  return function(dispatch) {
+    dispatch({type: 'SHOW_CART'});
+  }
 }
 
 export const hideCart = () => {
-  dispatch({type: 'HIDE_CART'});
+  return function(dispatch) {
+    dispatch({type: 'HIDE_CART'});
+  }
 }
 
 export const emptyCart = () => {
-  dispatch({type: 'EMPTY_CART'});
+  return function(dispatch) {
+    dispatch({type: 'EMPTY_CART'});
+  }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import moment from 'moment'
 
@@ -25,9 +26,9 @@ class Item extends Component {
   }
 
   componentDidMount() {
-    this.props.actions.fetchDates(this.props.itemInfo);
-    this.props.actions.fetchUser(this.props.itemInfo);
-    this.props.userInfo(this.props.itemInfo.rentee_id);
+    this.props.actions.fetchDates(this.props.location.params.itemInfo);
+    this.props.actions.fetchUser(this.props.location.params.itemInfo);
+    this.props.userInfo(this.props.location.params.itemInfo.rentee_id);
   }
 
   // fetchUser() {
@@ -60,7 +61,7 @@ class Item extends Component {
   // }
 
   render() {
-    let allTags = JSON.parse(this.props.itemInfo.tag);
+    let allTags = this.props.location.params.itemInfo.tag;
     
     let tags = allTags.map((tag, i) => {
       return (
@@ -81,25 +82,29 @@ class Item extends Component {
     return (
         <div className='row'>
           <div className='col-md-5 item-image-section'>
-            <img src={this.props.itemInfo.image} />
+            <img src={this.props.location.params.itemInfo.image} />
           </div>
           <div className='col-md-5 item-info-section'>
             <div className='item-brand'>
-              <span> {this.props.itemInfo.brand} </span>
+              <span> {this.props.location.params.itemInfo.brand} </span>
             </div>
             <div className='item-title'>
-              <span> {this.props.itemInfo.itemname} </span>
+              <span> {this.props.location.params.itemInfo.itemname} </span>
             </div>
-            <Link className='item-user' to='/userwardrobe'>
-              By: {this.props.owner}
+            <Link className='item-user' to='/userwardrobe' onClick={
+              () => {
+                // TO DO
+              }
+            }>
+              By: {this.props.location.params.itemInfo.User.userName}
             </Link>
             <hr className="col-md-12"></hr>
             <div className='item-price'>
-              <span className='line-through list-price-retail'> ${this.props.itemInfo.price} </span>
-              <span> ${Math.floor(this.props.itemInfo.price * 0.07)} </span>
+              <span className='line-through list-price-retail'> ${this.props.location.params.itemInfo.price} </span>
+              <span> ${Math.floor(this.props.location.params.itemInfo.price * 0.07)} </span>
             </div>
             <div className='item-size'>
-              <span> {this.props.itemInfo.size} </span>
+              <span> {this.props.location.params.itemInfo.size} </span>
             </div>
             
             <div className='item-calendar'>
@@ -109,9 +114,9 @@ class Item extends Component {
                 minimumNights={this.props.minimumNights}
                 startDate={this.props.startDate} 
                 endDate={this.props.endDate} 
-                onDatesChange={this.props.actions.dateChange({startDate, endDate})} 
+                onDatesChange={({startDate, endDate}) => this.props.actions.dateChange({startDate, endDate})} 
                 focusedInput={this.props.focusedInput} 
-                onFocusChange={this.props.actions.focusChange({ focusedInput })}
+                onFocusChange={({focusedInput}) => this.props.actions.focusChange({ focusedInput })}
                 />
             </div>
             <ul className='item-tags'>
@@ -141,14 +146,14 @@ class Item extends Component {
 
 const mapState = (store) => {
   return {
-    startDate: store.item.startDate,
-    endDate: store.item.endDate,
-    focusedInput: store.item.focusedInput,
-    minimumNights: store.item.minimumNights,
-    daySize: store.item.daySize,
-    itemInfo: store.item.itemInfo,
-    userInfo: store.item.checkUser,
-    owner: '',
+    startDate: store.Item.startDate,
+    endDate: store.Item.endDate,
+    focusedInput: null,
+    minimumNights: store.Item.minimumNights,
+    daySize: store.Item.daySize,
+    itemInfo: store.Item.itemInfo,
+    userInfo: store.Item.checkUser,
+    user: '',
     blockedDates: []
   }
 };
