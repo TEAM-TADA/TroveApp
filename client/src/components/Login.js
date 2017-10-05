@@ -9,15 +9,18 @@ class Login extends Component {
 
   constructor(props) {
     super(props)
+    this.login = this.login.bind(this);
   }
 
     //Add login event
-    authWithEmailPassword() {
+    login() {
       const email = document.getElementById('txtEmail').value;
       const pw = document.getElementById('txtPassword').value;
-      const userData = null;
-      const authDomain = firebase.auth();
-  
+      // const userData = null;
+      // const authDomain = firebase.auth();
+      console.log(email, pw)
+      this.props.actions.emailLogin(email, pw)
+
       document.getElementById('txtEmail').value = '';
       document.getElementById('txtPassword').value = '';
     }
@@ -32,8 +35,11 @@ class Login extends Component {
       const newPw = document.getElementById('newPw').value;
       const confPw = document.getElementById('confPw').value;
   
+      console.log('signup on component')
       if (newPw === confPw) {
-  
+        console.log(newEmail, newPw, newName)
+        this.props.actions.emailSignup(newEmail, newPw, newName)
+        // post username to database?        
       } else {
         alert('Please make sure both passwords match');
       }
@@ -66,7 +72,9 @@ class Login extends Component {
               <br></br>
               <div className='signin-input-area-title'>
                 <button id="btnLogin" className="btn signin-btn-color btn-lg btn-block" type="submit"
-                onClick={() => this.props.login()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.login()}}
                 >LOGIN</button>
               </div>
             </div>
@@ -93,7 +101,9 @@ class Login extends Component {
               <br></br>
               <div className='signin-input-area-title'>
                 <button 
-                onClick={() => this.props.signUp()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.signUp()}}
                 className="btn signin-btn-color btn-lg btn-block" type="submit">REGISTER</button>
               </div>
             </div>

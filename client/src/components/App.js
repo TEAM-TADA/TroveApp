@@ -28,7 +28,7 @@ class App extends Component {
     this.props.itemActions.fetchItems();
     auth.onAuthStateChanged((user) => {
       if(user) {
-        console.log(user.email);
+        // console.log(user.email);
         // axios.get(`/api/user/${user.email}`)
         // .then(({data}) => {
         //   this.setState({
