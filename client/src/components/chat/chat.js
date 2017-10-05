@@ -9,12 +9,13 @@ import * as chatActions from '../../actions/chatActions';
 class Chat extends Component {
   constructor(props) {
     super(props)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount(){
     this.socket = io('/')
     this.socket.on('message', message => {
-      this.props.actions.messageChange({messages: [...this.state.messages, message]});
+      this.props.actions.messageChange([...this.props.log, message]);
     })
   }
 
@@ -25,16 +26,20 @@ class Chat extends Component {
         text,
         from: 'Me'
       }
-      this.props.actions.messageChange({messages: [...this.state.messages, message]});
+      console.log(this.props);
+      this.props.actions.messageChange([...this.props.log, message]);
       this.socket.emit('message', text)
       event.target.value = '';
     }
   }
 
   render() {
-    const messages = this.props.messages.map((message, index) => {
-      return <li key={index}><b>{message.from}</b>{message.body}</li>
-    })
+    console.log(this.props.log);
+    const messages = this.props.log ? this.props.log.map((message, index) => {
+      return (
+        <li key={index}><b>{message.from}</b>: {message.text}</li>
+      )
+    }) : null;
     return (
       <div>
         <input type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit} />
@@ -48,7 +53,7 @@ class Chat extends Component {
 
 const mapState = (store) => {
   return {
-    messages: store.Chat.messages,
+    log: store.Chat.log,
   }
 };
 
