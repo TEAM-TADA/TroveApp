@@ -6,11 +6,13 @@ import Dashboard from './dashboardReducers';
 import Search from './searchReducer';
 import Cart from './cartReducers';
 import Login from './authReducers';
+import Chat from './chatReducers';
 
 const TroveReducer = combineReducers({
   // NavBar,
   // Home,
   Cart,
+  Chat,
   Item,
   Dashboard,
   Login,
