@@ -1,5 +1,5 @@
 const initialState = {
-  messages: [],
+  log: [],
   error: null,
 }
 
@@ -7,7 +7,7 @@ const chatReducer = (state=initialState, action) => {
   switch(action.type) {
     case "MESSAGE_CHANGE": {
       return Object.assign({}, state, {
-        messages: action.payload,
+        log: action.payload,
       })
     }
     default: {
