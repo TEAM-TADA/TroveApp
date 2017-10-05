@@ -1,4 +1,6 @@
 import firebase, { auth } from '../firebase.js';
+import { push } from 'react-router-redux';
+import axios from 'axios';
 
 export const emailLogin = (email, pw) => {
   return function(dispatch) {    
@@ -10,13 +12,14 @@ export const emailLogin = (email, pw) => {
           localStorage.setItem('authenticated', true),
           localStorage.setItem('user', result),
           localStorage.setItem('sqlUser', data)
+          console.log(localStorage);
           // not sure what the payload should actually be here.
           dispatch({type: 'USER_LOGIN_FULFILLED', payload: result.email});
           // what's home?
           dispatch(push('/'));
         })
         .catch(function(error) {
-          alert(error.message);        
+          alert('main? ', error.message);        
           dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
         });
     });
@@ -42,11 +45,13 @@ export const logout = () => {
       });
 };
 
-export const emailSignup = (email, pw) => {
-  auth.createUserWithEmailAndPassword(newEmail, pw)
+export const emailSignup = (email, pw, name) => {
+  console.log('email signup')
+  auth.createUserWithEmailAndPassword(email, pw)
   .then((result) => {
+    console.log('axios post');
     axios.post('/api/user', {
-      userName: newName,
+      userName: name,
       userEmail: newEmail
     })
     .then(({data}) => {
@@ -54,13 +59,14 @@ export const emailSignup = (email, pw) => {
       localStorage.setItem('user', result),
       localStorage.setItem('sqlUser', data)
       alert('Account successfully created!')
+      console.log(localStorage);
       // not sure what the payload should actually be here.
       dispatch({type: 'USER_LOGIN_FULFILLED', payload: result.email});
       // what's home?
       dispatch(push('/'));
     })
     .catch(err => {
-      alert(err.message);
+      alert('axios! ', err.message);
       dispatch({type: 'USER_LOGIN_REJECTED', payload: error.message});
     })
   })
