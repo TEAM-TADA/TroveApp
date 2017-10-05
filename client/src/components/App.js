@@ -15,6 +15,7 @@ import firebase, {auth} from '../firebase';
 import Item from './Home/Item';
 import SearchResult from './Search/SearchResult';
 import UserWardrobe from './UserWardrobe/UserWardrobe';
+import Chat from './chat/chat';
 
 import * as cartActions from '../actions/cartActions';
 import * as itemActions from '../actions/itemsAction';
@@ -70,6 +71,7 @@ class App extends Component {
             <Route exact path='/item/:item_id' component={Item} />
             <Route exact path='/search' component={() => (<SearchResult results={results} addToCart={cartActions.addToCart}/>)} />
             <Route exact path='/userwardrobe' component={() => (<UserWardrobe />)} />
+            <Route exact path='/chat' component={() => (<Chat/>)} />
             <Route render={function() {
 								return (
                   <div className='fourofour-section'>
