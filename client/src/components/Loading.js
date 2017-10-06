@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 var styles = {
   content: {
     textAlign: 'center',
@@ -16,13 +15,7 @@ class Loading extends Component {
       text: props.text,
     }
   }
-  render () {
-    return (
-      <p style={styles.content}>
-        {this.state.text}
-      </p>
-    )
-  }
+
   componentDidMount() {
     var stopper = this.props.text + '...';
     this.interval = window.setInterval(function() {
@@ -41,6 +34,15 @@ class Loading extends Component {
       }
     }.bind(this), this.props.speed)
   }
+  
+  render () {
+    return (
+      <p style={styles.content}>
+        {this.state.text}
+      </p>
+    )
+  }
+
   componentWillUnmount () {
     console.log('Clear Interval')
     window.clearInterval(this.interval)

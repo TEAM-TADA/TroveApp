@@ -1,8 +1,8 @@
-const { Item } = require('../../db/model/dataModel');
+const { Item, User } = require('../../db/model/dataModel');
 
 module.exports = {
   fetchAll: (req, res) => {
-    Item.findAll()
+    Item.findAll({include: [ User ]})
     .then((data) => {
       res.status(200).send(data);
     })
@@ -33,7 +33,8 @@ module.exports = {
     Item.findAll({
       where: {
         id: req.params.id
-      }
+      },
+      include: [ User ]
     })
     .then(data => {
       res.status(201).send(data)
