@@ -3,6 +3,7 @@ const itemCtrl = require('../controller/itemCtrl');
 const userCtrl = require('../controller/userCtrl');
 const paymentCtrl = require('../controller/paymentCtrl')
 const rentTrxCtrl = require('../controller/rentTrxCtrl');
+const igCtrl = require('../controller/igCtrl')
 
 router.route('/')
   .get(itemCtrl.fetchAll)
@@ -32,5 +33,14 @@ router.route('/renttrx/item/:item_id')
   
 router.route('/renttrx/renter/:renter_id')
   .get(rentTrxCtrl.getRenter)
+
+router.route('/instagram/feed/:userEmail')
+  .get(igCtrl.getFeed)
+
+  router.route('/instagram/refresh/:userEmail')
+  .get(igCtrl.refresh)
+
+router.route('/instagram/search/')
+  .get(igCtrl.searchTag)
 
 module.exports = router;

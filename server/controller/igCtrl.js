@@ -5,23 +5,14 @@ const feedUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_to
 
 
 module.exports = {
-  searchTag: (req, res) => {
-    axios.get('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + token)
-      .then((data) => {
-        client.set(req.body.tag, data);
-      })
-      .catch(err => {
-        res.status(500).send(err);
-      })
-  },
   getFeed: (req, res) => {
-    client.get(req.body.username, (err, result) => {
+    client.get(req.params.userEmail, (err, result) => {
       if (result) {
         res.send({"cached feed": result, "source": "redis cache"})
       } else {
         axios.get(feedUrl + req.body.token) 
           .then((data) => {
-            client.set(req.body.username, data);
+            client.set(req.params.userEmail, data);
             res.send({"feed": data, "source": "Instagram API"});
           })
           .catch(err => {
@@ -29,6 +20,25 @@ module.exports = {
           })
       }
     })
+  }, 
+  refresh: (req, res) => {
+    axios.get(feedUrl + req.body.token) 
+    .then((data) => {
+      client.setxx(req.params.userEmail, data);
+      res.send({"feed": data, "source": "Instagram API"});
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
+  },
+  searchTag: (req, res) => {
+    axios.get('https://api.instagram.com/v1/tags/' + req.body.tag + '/media/recent?access_token=' + req.body.token)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send(err);
+      })
   }
 }
 

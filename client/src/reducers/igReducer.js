@@ -27,6 +27,16 @@ const igReducer = (state=initialState, action) => {
         feed: action.payload
       })
     }
+    case "REFRESH_FEED_REJECTED": {
+      return Object.assign({}, state, { 
+        error: action.payload
+      })
+    }
+    case "REFRESH_FEED_FULFILLED": {
+      return Object.assign({}, state, { 
+        feed: action.payload
+      })
+    }
     case "SEARCH_TAG_REJECTED": {
       return Object.assign({}, state, { 
         error: action.payload

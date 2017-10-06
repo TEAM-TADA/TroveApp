@@ -15,26 +15,45 @@ export const authenticate = () => {
   };
 };
 
-// export const getFeed = (token) => {
-//   return function(dispatch) {
-//     axios.get(feedUrl + token)
-//       .then(({ data }) => {
-//         dispatch({type: "FETCH_FEED_FULFILLED", payload: data});
-//       })
-//       .catch(err => {
-//         dispatch({type: "FETCH_FEED_REJECTED", payload: err});
-//       });
-//   };
-// };
+export const getFeed = (userEmail, token) => {
+  return function(dispatch) {
+    axios.get('api/instagram/feed/' + userEmail, {
+      token: token
+    })
+      .then((response) => {
+        dispatch({type: "FETCH_FEED_FULFILLED", payload: response.feed});
+        console.log(response.source);
+      })
+      .catch(err => {
+        dispatch({type: "FETCH_FEED_REJECTED", payload: err});
+      });
+  };
+};
 
-// export const searchTag = (tag, token) => {
-//   return function(dispatch) {
-//     axios.get('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + token)
-//       .then(({ data }) => {
-//         dispatch({type: "SEARCH_TAG_FULFILLED", payload: data});
-//       })
-//       .catch(err => {
-//         dispatch({type: "SEARCH_TAG_REJECTED", payload: err});
-//       });
-//   };
-// }
+export const refresh = (userEmail, token) => {
+  return function(dispatch) {
+    axios.get('/api/instagram/refresh/' + userEmail, {
+      token: token
+    })
+    .then((response) => {
+      dispatch({type: 'REFRESH_FEED_FUFILLED', payload: response.feed});
+      console.log(response.source);
+    })
+    .catch(err => {
+      dispatch({type: 'REFRESH_FEED_REJECTED', payload: err});
+    })
+  }
+}
+
+export const searchTag = (tag, token) => {
+  axios.get('/api/instagram/search/', {
+    tag: tag, 
+    token: token
+  })
+    .then(({ data }) => {
+      dispatch({type: "SEARCH_TAG_FULFILLED", payload: data});
+    })
+    .catch(err => {
+      dispatch({type: "SEARCH_TAG_REJECTED", payload: err});
+    })
+}
