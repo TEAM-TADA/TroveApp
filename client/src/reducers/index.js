@@ -5,8 +5,12 @@ import Item from './itemsReducer';
 import Dashboard from './dashboardReducers';
 import Search from './searchReducer';
 import Cart from './cartReducers';
+<<<<<<< HEAD
 import Login from './authReducers';
 import Chat from './chatReducers';
+=======
+import Instagram from './igReducer'
+>>>>>>> Set up redis and ig controller.
 
 const TroveReducer = combineReducers({
   // NavBar,
@@ -19,6 +23,7 @@ const TroveReducer = combineReducers({
   Search,
   // UserWardrobe,
   // Footer,
+  Instagram,
   routing: routerReducer,
 });
 
