@@ -26,10 +26,12 @@ app.get('/*', function (req, res) {
 //   console.log(`Listening on port ${PORT}`)
 // })
 io.on('connection', socket => {
-  socket.on('message', text => {
+  socket.on('message', message => {
+    console.log('server received message ');
     socket.broadcast.emit('message', {
-      text,
-      from: socket.id.slice(8)
+      text: message.text,
+      // from: socket.id.slice(8)
+      from: message.from,
     })
   })
 })
