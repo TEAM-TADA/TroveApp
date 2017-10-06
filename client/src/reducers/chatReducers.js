@@ -6,6 +6,7 @@ const initialState = {
 const chatReducer = (state=initialState, action) => {
   switch(action.type) {
     case "MESSAGE_CHANGE": {
+      console.log('chat reducer payload, ', action.payload)
       return Object.assign({}, state, {
         log: action.payload,
       })
