@@ -98,6 +98,9 @@ class Item extends Component {
             }>
               By: {this.props.location.params.itemInfo.User.userName}
             </Link>
+            <Link to="/chat">
+              <button>Message this user</button>
+            </Link>
             <hr className="col-md-12"></hr>
             <div className='item-price'>
               <span className='line-through list-price-retail'> ${this.props.location.params.itemInfo.price} </span>

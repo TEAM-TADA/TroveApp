@@ -10,11 +10,11 @@ export const emailLogin = (email, pw) => {
       axios.get(`/api/user/${email}`)
         .then(({data}) => {
           localStorage.setItem('authenticated', true),
-          localStorage.setItem('user', result),
+          localStorage.setItem('user', email),
           localStorage.setItem('sqlUser', data)
-          console.log(localStorage);
+          console.log("this is the email: ", email);
           // not sure what the payload should actually be here.
-          dispatch({type: 'USER_LOGIN_FULFILLED', payload: result.email});
+          dispatch({type: 'USER_LOGIN_FULFILLED', payload: email});
           // what's home?
           dispatch(push('/'));
         })
@@ -56,7 +56,7 @@ export const emailSignup = (email, pw, name) => {
     })
     .then(({data}) => {
       localStorage.setItem('authenticated', true),
-      localStorage.setItem('user', result),
+      localStorage.setItem('username', result),
       localStorage.setItem('sqlUser', data)
       alert('Account successfully created!')
       console.log(localStorage);
