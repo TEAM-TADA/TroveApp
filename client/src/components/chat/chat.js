@@ -15,26 +15,30 @@ class Chat extends Component {
   componentDidMount(){
     this.socket = io('/')
     this.socket.on('message', message => {
+      console.log('socket received message', message);
       this.props.actions.messageChange([...this.props.log, message]);
     })
   }
 
   handleSubmit (event) {
+    event.preventDefault();
     const text = event.target.value;
     if (event.key == 'Enter' && text) {
+      console.log('MESSAGE SUBMITTED: this', this);
+      console.log('PROPS USER: ', this.props.user);
       const message = {
-        text,
-        from: 'Me'
+        text: text,
+        from: this.props.user
       }
-      console.log(this.props);
+      // console.log('PROPS:', this.props);
       this.props.actions.messageChange([...this.props.log, message]);
-      this.socket.emit('message', text)
+      console.log('LOGGED:', this.props.log);
+      this.socket.emit('message', message);
       event.target.value = '';
     }
   }
 
   render() {
-    console.log(this.props.log);
     const messages = this.props.log ? this.props.log.map((message, index) => {
       return (
         <li key={index}><b>{message.from}</b>: {message.text}</li>
@@ -54,6 +58,7 @@ class Chat extends Component {
 const mapState = (store) => {
   return {
     log: store.Chat.log,
+    user: store.Login.username,
   }
 };
 
