@@ -17,6 +17,7 @@ const authReducer = (state=initialState, action) => {
     }
 
     case 'USER_LOGIN_FULFILLED': {
+      console.log('USERNAME UPDATED, ', action.payload);
       return Object.assign({}, state, {loggingIn: false, authenticated: true, username: action.payload});
     }
 
