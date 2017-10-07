@@ -82,6 +82,12 @@ const Rent_trx = db.define('Rent_trx', {
   timestamps: false
 })
 
+const Ig = db.define('Ig', {
+  photos: {
+    type: Sequelize.ARRAY({type: Sequelize.STRING})
+  }
+})
+
 User.hasMany(Item, { foreignKey: { name: 'rentee_id' }, onDelete: 'CASCADE' })
 Item.belongsTo(User, { foreignKey: { name: 'rentee_id' }, onDelete: 'CASCADE' })
 
@@ -91,6 +97,8 @@ Rent_trx.belongsTo(Item, {foreignKey: {name: 'item_id'}, onDelete:'CASCADE'})
 // User.hasOne(Rent_trx, {foreignKey: {name: 'renter_id'}, onDelete:'CASCADE'})
 // User.hasOne(Rent_trx, {foreignKey: {name: 'rentee_id'}, onDelete:'CASCADE'})
 
+User.hasOne(Ig); 
+Ig.belongsTo(User);
 
 // db.sync();
 
@@ -106,6 +114,7 @@ db.sync({force: true})
 module.exports = {
   User,
   Item,
-  Rent_trx
+  Rent_trx,
+  Ig
 }
 

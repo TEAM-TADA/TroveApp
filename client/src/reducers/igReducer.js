@@ -2,21 +2,12 @@ const initialState = {
   token: '',
   error: null,
   feed: [],
-  results: []
-}
+  results: [],
+  selected: [],
+}; 
 
 const igReducer = (state=initialState, action) => {
   switch(action.type) {
-    case "AUTHENTICATE_IG_REJECTED": {
-      return Object.assign({}, state, { 
-        error: action.payload
-      })
-    }
-    case "AUTHENTICATE_IG_FULFILLED": {
-      return Object.assign({}, state, { 
-        token: action.payload.split('=')[1]
-      })
-    }
     case "FETCH_FEED_REJECTED": {
       return Object.assign({}, state, { 
         error: action.payload
@@ -24,7 +15,8 @@ const igReducer = (state=initialState, action) => {
     }
     case "FETCH_FEED_FULFILLED": {
       return Object.assign({}, state, { 
-        feed: action.payload
+        feed: action.payload,
+        token: action.token
       })
     }
     case "REFRESH_FEED_REJECTED": {
@@ -46,6 +38,29 @@ const igReducer = (state=initialState, action) => {
       return Object.assign({}, state, { 
         results: action.payload
       })
+    }
+    case "SELECT_PHOTOS_REJECTED": {
+      return Object.assign({}, state, { 
+        error: action.payload
+      })
+    }
+    case "SELECT_PHOTOS_FULFILLED": {
+      return Object.assign({}, state, { 
+        selected: action.payload
+      })
+    }
+    case "FETCH_PHOTOS_REJECTED": {
+      return Object.assign({}, state, { 
+        error: action.payload
+      })
+    }
+    case "FETCH_PHOTOS_FULFILLED": {
+      return Object.assign({}, state, { 
+        selected: action.payload
+      })
+    }
+    default: {
+      return state
     }
   }
 }
