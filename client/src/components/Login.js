@@ -18,7 +18,6 @@ class Login extends Component {
       const pw = document.getElementById('txtPassword').value;
       // const userData = null;
       // const authDomain = firebase.auth();
-      console.log(email, pw)
       this.props.actions.emailLogin(email, pw)
 
       document.getElementById('txtEmail').value = '';
@@ -36,9 +35,7 @@ class Login extends Component {
       const newPw = document.getElementById('newPw').value;
       const confPw = document.getElementById('confPw').value;
   
-      console.log('signup on component')
       if (newPw === confPw) {
-        console.log(newEmail, newPw, newName)
         this.props.actions.emailSignup(newEmail, newPw, newName)
         // post username to database?        
       } else {
@@ -132,5 +129,3 @@ const loginDispatch = (dispatch) => {
 };
 
 export default connect(null, loginDispatch)(Login);
-
-// export default Login;

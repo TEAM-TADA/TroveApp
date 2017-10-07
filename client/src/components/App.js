@@ -28,18 +28,7 @@ class App extends Component {
   componentDidMount() {
     this.props.itemActions.fetchItems();
     auth.onAuthStateChanged((user) => {
-      if(user) {
-        // console.log(user.email);
-        // axios.get(`/api/user/${user.email}`)
-        // .then(({data}) => {
-        //   this.setState({
-        //     authenticated: true,
-        //     user: user,
-        //     sqlUser: data,
-        //     userId: data.id
-        //   })
-        // })
-      } else {
+      if(!user) {
         console.log('not logged in')
       }
     })

@@ -94,12 +94,12 @@ export const logout = () => {
         localStorage.removeItem('sqlUser')
           //cart: localStorage.setItem('cart', JSON.stringify([]))
           dispatch({type: 'USER_LOGOUT_FULFILLED'});
-          // where should I go?
           dispatch(push('/'));
           location.reload();
         })
-      .catch(function(error) {
-        alert(error.message);        
+        .catch(function(error) {
+          alert(error.message);        
+          console.log(localStorage)
         dispatch({type: 'USER_LOGOUT_REJECTED', payload: error.message});
       });
 };
