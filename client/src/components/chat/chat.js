@@ -13,10 +13,12 @@ class Chat extends Component {
   }
 
   componentDidMount(){
-    this.socket = io('/')
+    this.socket = io('/');
+    this.socket.emit('subscribe', this.props.match.params.value.toString());    
     this.socket.on('message', message => {
       console.log('socket received message', message);
       this.props.actions.messageChange([...this.props.log, message]);
+      // this.props.actions.messageChange(Object.assign(log, ));
     })
   }
 
@@ -24,11 +26,13 @@ class Chat extends Component {
     event.preventDefault();
     const text = event.target.value;
     if (event.key == 'Enter' && text) {
+      console.log('props:', this.props);
       console.log('MESSAGE SUBMITTED: this', this);
       console.log('PROPS USER: ', this.props.user);
       const message = {
         text: text,
-        from: this.props.user
+        from: this.props.user,
+        room: this.props.match.params.value.toString()
       }
       // console.log('PROPS:', this.props);
       this.props.actions.messageChange([...this.props.log, message]);
@@ -40,10 +44,18 @@ class Chat extends Component {
 
   render() {
     const messages = this.props.log ? this.props.log.map((message, index) => {
-      return (
-        <li key={index}><b>{message.from}</b>: {message.text}</li>
+      return ( 
+          <li key={index}><b>{message.from}</b>: {message.text}</li> 
       )
     }) : null;
+
+
+    // const messages = this.props.log.filter(message => message.room == this.props.match.params.value.toString());
+    // console.log(messages);
+    // const messages2 = messages.map((message, index) => {
+    //   return( <li key={index}><b>{message.from}</b>: {message.text}</li>)
+    // })
+    // console.log(messages2);
     return (
       <div>
         <input type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit} />
