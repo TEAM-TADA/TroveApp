@@ -18,14 +18,14 @@ class Login extends Component {
       const pw = document.getElementById('txtPassword').value;
       // const userData = null;
       // const authDomain = firebase.auth();
-      console.log(email, pw)
       this.props.actions.emailLogin(email, pw)
 
       document.getElementById('txtEmail').value = '';
       document.getElementById('txtPassword').value = '';
     }
   
-    logout() {
+    googleLogin() {
+      this.props.actions.googleLogin();
     }
   
     //Sign up
@@ -35,9 +35,7 @@ class Login extends Component {
       const newPw = document.getElementById('newPw').value;
       const confPw = document.getElementById('confPw').value;
   
-      console.log('signup on component')
       if (newPw === confPw) {
-        console.log(newEmail, newPw, newName)
         this.props.actions.emailSignup(newEmail, newPw, newName)
         // post username to database?        
       } else {
@@ -76,6 +74,11 @@ class Login extends Component {
                   e.preventDefault();
                   this.login()}}
                 >LOGIN</button>
+                <button id="btnLogin" className="btn google-btn-color btn-lg btn-block" type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.actions.googleLogin()}}
+                >LOGIN WITH GOOGLE</button>
               </div>
             </div>
             <div className='col-md-5 register'>
@@ -105,6 +108,11 @@ class Login extends Component {
                   e.preventDefault();
                   this.signUp()}}
                 className="btn signin-btn-color btn-lg btn-block" type="submit">REGISTER</button>
+                <button id="btnLogin" className="btn google-btn-color btn-lg btn-block" type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.actions.googleSignup()}}
+                >SIGNUP WITH GOOGLE</button>
               </div>
             </div>
           </div>
@@ -121,5 +129,3 @@ const loginDispatch = (dispatch) => {
 };
 
 export default connect(null, loginDispatch)(Login);
-
-// export default Login;

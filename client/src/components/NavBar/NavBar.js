@@ -4,8 +4,9 @@ import Checkout from './Checkout';
 import { Scrollbars } from 'react-custom-scrollbars'
 import moment from 'moment';
 
-import * as searchActions from '../../actions/searchActions'
-import * as cartActions from '../../actions/cartActions'
+import * as searchActions from '../../actions/searchActions';
+import * as cartActions from '../../actions/cartActions';
+import * as authActions from '../../actions/authActions';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,6 +25,8 @@ class NavBar extends Component {
   }
 
   render() {
+
+    const { cart } = this.props;
 
     let searchInput = document.getElementById('searchInput') ? document.getElementById('searchInput').value : ''; 
 
@@ -59,7 +62,7 @@ class NavBar extends Component {
               </NavLink>
             </form>
             {/* Check if user logged in */}
-            {!this.props.authenticated ?
+            {!localStorage.authenticated ?
               <NavLink exact activeClassName="active"  className="nav-link nav-title login" to='/login'>
               <i className="fa fa-user-o cart-icon" aria-hidden="true"></i>LOGIN / REGISTER
               </NavLink>
@@ -69,7 +72,7 @@ class NavBar extends Component {
                   <NavLink exact activeClassName="active"  className="nav-link nav-title" to='/account' >
                   <i className="fa fa-suitcase cart-icon" aria-hidden="true"></i>ACCOUNT
                   </NavLink>
-                  <NavLink exact activeClassName="active"  className="nav-link nav-title logout" to='/' onClick={() => {this.emptyCart(); this.props.logout() /*update when auth actions finished*/ }} >
+                  <NavLink exact activeClassName="active"  className="nav-link nav-title logout" to='/' onClick={(e) => {e.preventDefault(); this.props.cartActions.emptyCart(); this.props.authActions.logout() /*update when auth actions finished*/ }} >
                   <i className="fa fa-user cart-icon" aria-hidden="true"></i>LOGOUT
                   </NavLink>
                     <a className='nav-link nav-title' onClick={() => cart.length > 0 ? cartActions.showCart() : null}>
@@ -140,7 +143,8 @@ const navBarState = (store) => {
 const navBarDispatch = (dispatch) => {
   return {
     searchActions: bindActionCreators(searchActions, dispatch),
-    cartActions: bindActionCreators(cartActions, dispatch)
+    cartActions: bindActionCreators(cartActions, dispatch),
+    authActions: bindActionCreators(authActions, dispatch)
   }
 }
 

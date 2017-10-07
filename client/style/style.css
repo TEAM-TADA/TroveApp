@@ -424,7 +424,7 @@ hr {
 
 .signin {
   background-color: transparent;
-  height: 380px;
+  height: 440px;
   margin-right: auto;
   margin-bottom: 30px;
   margin-left: auto;
@@ -448,7 +448,19 @@ hr {
   cursor: pointer;
 }
 
+.google-btn-color {
+  background: #cdb287;
+  color: white;
+  cursor: pointer;
+}
+
 .signin-btn-color:hover {
+  background: #5f5037;
+  color: white;
+  cursor: pointer;
+}
+
+.google-btn-color:hover {
   background: #5f5037;
   color: white;
   cursor: pointer;
