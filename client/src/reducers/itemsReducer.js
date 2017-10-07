@@ -10,12 +10,12 @@ const initialState = {
 
 const itemReducer = (state=initialState, action) => {
   switch(action.type) {
-    case "FETCH_USERS_REJECTED": {
+    case "FETCH_USER_REJECTED": {
       return Object.assign({}, state, { 
         error: action.payload
       })
     }
-    case "FETCH_USERS_FULFILLED": {
+    case "FETCH_USER_FULFILLED": {
       return Object.assign({}, state, { 
         fetchedUsers: true,
         owner: action.payload

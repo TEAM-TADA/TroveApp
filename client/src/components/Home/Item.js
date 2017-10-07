@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
 import moment from 'moment'
+import io from 'socket.io-client';
 
 import * as itemActions from '../../actions/itemsAction';
 
@@ -23,13 +24,27 @@ class Item extends Component {
     //   blockedDates: []
     // }
     // this.fetchUser = this.fetchUser.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.props.actions.fetchDates(this.props.location.params.itemInfo);
     this.props.actions.fetchUser(this.props.location.params.itemInfo);
     this.props.userInfo(this.props.location.params.itemInfo.rentee_id);
+    console.log('made it to items')
+    console.log('ITEM PROPS:', this.props);
   }
+  // componentWillMount() {
+  //   console.log('ITEM PROPS:', this.props);
+  // }
+  handleSubmit (event) {
+    // event.preventDefault();
+    console.log('ROOM ID', this.props.match.params.item_id);
+    // this.socket.emit('subscribe', this.props.match.params.item_id.toString());
+  }
+  // componentWillUpdate() {
+  //   console.log(this.props.owner);
+  // }
 
   // fetchUser() {
   //   axios.get(`/api/user/owner/${this.state.itemInfo.rentee_id}`)
@@ -69,6 +84,7 @@ class Item extends Component {
       )
     });
 
+    
     let badDates = this.props.blockedDates;
     const isDayBlocked = function(day) {
       for (var i = 0; i < badDates.length; i += 2) {
@@ -78,9 +94,10 @@ class Item extends Component {
       }
       return false;
     }
-
+    console.log('PROPS: ', this.props)
+    
     return (
-        <div className='row'>
+      <div className='row'>
           <div className='col-md-5 item-image-section'>
             <img src={this.props.location.params.itemInfo.image} />
           </div>
@@ -98,8 +115,8 @@ class Item extends Component {
             }>
               By: {this.props.location.params.itemInfo.User.userName}
             </Link>
-            <Link to="/chat">
-              <button>Message this user</button>
+            <Link to={`/chat/${this.props.location.params.itemInfo.id}`}>
+              <button onClick={this.handleSubmit}>Message {this.props.location.params.itemInfo.User.userName} about {this.props.location.params.itemInfo.id}</button>
             </Link>
             <hr className="col-md-12"></hr>
             <div className='item-price'>
@@ -157,6 +174,7 @@ const mapState = (store) => {
     itemInfo: store.Item.itemInfo,
     userInfo: store.Item.checkUser,
     user: '',
+    owner: store.Item.owner,
     blockedDates: []
   }
 };

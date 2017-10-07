@@ -23,6 +23,7 @@ export const fetchUser = (itemInfo) => {
   return function(dispatch) {
     axios.get(`/api/user/owner/${itemInfo.rentee_id}`)
     .then(user => {
+      console.log('USER: ', user);
       dispatch({type: 'FETCH_USER_FULFILLED', payload: user.data.userName});
     })
     .catch(err => {

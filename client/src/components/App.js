@@ -68,7 +68,8 @@ class App extends Component {
             <Route exact path='/item/:item_id' component={Item} />
             <Route exact path='/search' component={() => (<SearchResult results={results} addToCart={cartActions.addToCart}/>)} />
             <Route exact path='/userwardrobe' component={() => (<UserWardrobe />)} />
-            <Route exact path='/chat' component={() => (<Chat />)} />
+            {/* <Route exact path='/chat/:value' component={() => (<Chat />)} /> */}
+            <Route exact path='/chat/:value' component={Chat} />
             <Route render={function() {
 								return (
                   <div className='fourofour-section'>
