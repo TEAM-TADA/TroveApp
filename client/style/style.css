@@ -943,3 +943,104 @@ hr {
   background-position: left, center, right;
   padding-bottom: 15%;
 }
+
+/* ----- chat ----- */
+
+#bodybox {
+  margin: auto;
+  max-width: 550px;
+  font: 15px arial, sans-serif;
+  background-color: white;
+  /* border-style: solid;
+  border-width: 1px; */
+  padding-top: 20px;
+  padding-bottom: 25px;
+  padding-right: 25px;
+  padding-left: 25px;
+  /* box-shadow: 5px 5px 5px grey; */
+  border-radius: 15px;
+}
+
+#chatborder {
+  /* border-style: solid; */
+  background-color: #f6f9f6;
+  border-width: 3px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  padding-right: 20px;
+  padding-left: 15px;
+  border-radius: 15px;
+}
+
+.chatlog {
+  font: 15px arial, sans-serif;
+}
+
+#chatbox {
+  font: 17px arial, sans-serif;
+  height: 22px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#chatHeader {
+  text-align: center;
+}
+
+.chatSelf {
+    position: relative;
+    width: 250px;
+    height: 75px;
+    padding: 0px;
+    background: #CAFFFF;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-left: 180px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.chatSelf:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent #CAFFFF;
+  display: block;
+  width: 0;
+  z-index: 1;
+  right: -15px;
+  top: 19px;
+}
+
+.chatOther {
+  position: relative;
+  width: 250px;
+  height: 75px;
+  padding: 0px;
+  background: #FFD1FF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.chatOther:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent #FFD1FF;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: -15px;
+  top: 19px;
+}
