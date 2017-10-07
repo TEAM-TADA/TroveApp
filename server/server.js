@@ -54,8 +54,6 @@ io.on('disconnect', socket => {
 
 
 server.listen(PORT, () => console.log('listening on port ' + PORT));
-  console.log(`Listening on port ${PORT}`)
-})
 
 // app.listen(PORT, () => {
 //   console.log(`Listening on port ${PORT}`)
