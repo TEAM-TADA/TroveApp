@@ -15,8 +15,8 @@ const PORT = 3000;
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-const redis = require('redis')
-const client = redis.createClient(); 
+// const redis = require('redis')
+// const client = redis.createClient(); 
 
 app.use(parser.json())
 app.use(parser.urlencoded({extended: true}))
@@ -47,4 +47,4 @@ server.listen(PORT, () => console.log('listening on port ' + PORT));
 //   console.log(`Listening on port ${PORT}`)
 // })
 
-module.exports = client; 
+// module.exports = client; 

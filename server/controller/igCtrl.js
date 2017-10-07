@@ -1,4 +1,4 @@
-const client = require('../../server/server')
+// const client = require('../../server/server')
 const axios = require('axios')
 const { Ig } = require('../../db/model/dataModel')
 
