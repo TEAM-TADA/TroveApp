@@ -37,8 +37,8 @@ io.on('connection', socket => {
     console.log('this is the message room', message);
     socket.broadcast.to(message.room.toString()).emit('message', {
       text: message.text,
-      // from: socket.id.slice(8)
       from: message.from,
+      room: message.room
     })
   })
   socket.on('subscribe', function(room) {
