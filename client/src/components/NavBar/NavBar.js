@@ -52,6 +52,11 @@ class NavBar extends Component {
                 WOMEN
               </NavLink>
               </li>
+              <li>
+              <NavLink exact activeClassName="active" className="nav-link nav-title" to='/iglogin' >
+                INSTAGRAM
+              </NavLink>
+              </li>
             </ul>
             <form className="form-inline my-2 my-lg-0 search-section">
               <input className="form-control mr-sm-2 input-sm" type="text" placeholder="Search" id="searchInput" />

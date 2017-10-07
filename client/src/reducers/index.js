@@ -7,7 +7,7 @@ import Search from './searchReducer';
 import Cart from './cartReducers';
 import Login from './authReducers';
 import Chat from './chatReducers';
-import Instagram from './igReducer'
+import Instagram from './igReducer';
 
 const TroveReducer = combineReducers({
   // NavBar,
