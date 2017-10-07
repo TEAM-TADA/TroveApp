@@ -43,23 +43,22 @@ class Chat extends Component {
   }
 
   render() {
-    const messages = this.props.log ? this.props.log.map((message, index) => {
-      return ( 
-          <li key={index}><b>{message.from}</b>: {message.text}</li> 
-      )
-    }) : null;
-
-
-    // const messages = this.props.log.filter(message => message.room == this.props.match.params.value.toString());
-    // console.log(messages);
-    // const messages2 = messages.map((message, index) => {
-    //   return( <li key={index}><b>{message.from}</b>: {message.text}</li>)
-    // })
-    // console.log(messages2);
+    const messages = this.props.log.filter(message => message.room == this.props.match.params.value.toString());
+    console.log(messages);
+    const messages2 = messages.map((message, index) => {
+      console.log(message.from);
+      return( message.from === this.props.user ? <div className="chatSelf" key={index}><b>{message.from}</b>: {message.text}</div> : <div className="chatOther" key={index}><b>{message.from}</b>: {message.text}</div>)
+    })
+    
     return (
-      <div>
-        <input type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit} />
-        {messages}
+      <div id='bodybox'>
+        <div id='container'>
+          <h2 id="chatHeader">Chat about item {this.props.match.params.value}</h2>
+          <div id='chatborder'>
+              <input id="chatbox" type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit} />
+            <div className="chatlog">{messages2} </div>
+          </div>
+        </div>
       </div>
     )
   }
