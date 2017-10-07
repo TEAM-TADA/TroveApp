@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
+import * as igActions from '../../actions/igActions'
+
 
 class IgImage extends Component {
   constructor() {
@@ -13,20 +15,19 @@ class IgImage extends Component {
   }
 
   select() {
-    this.setState({isSelected: !this.state.isSelected});
-    if (this.state.isSelected) {
+    if (!this.state.isSelected) {
+      this.setState({isSelected: !this.state.isSelected});
       this.state.selected.push(this.props.src);
-      console.log('selected images', this.state.selected);
     }
-    // if (!this.state.isSelected) {
-    //   this.state.selected.splice(indexOf(this.props.src), 1);
-    //   console.log('selected images', this.state.selected);
-    // }
-    
+    if (this.state.isSelected) {
+      this.setState({isSelected: !this.state.isSelected});
+      this.state.selected.splice(this.state.selected.indexOf(this.props.src), 1);
+    }
+    console.log('selected images', this.state.selected);
   }
 
   handleSubmit() {
-    this.props.igActions.submitPhoto(selected);
+    this.props.igActions.submitPhotos(selected);
   }
 
   render() {
@@ -49,13 +50,13 @@ class IgImage extends Component {
 //   };
 // };
 // 
-// const igDispatch = (dispatch) => {
-//   return {
-//     igActions: bindActionCreators(igActions, dispatch)
-//   }
-// }
+const igDispatch = (dispatch) => {
+  return {
+    igActions: bindActionCreators(igActions, dispatch)
+  }
+}
 
-// export default connect(null, igDispatch)(IgImage);
+export default connect(null, igDispatch)(IgImage);
 
-export default IgImage;
+
 

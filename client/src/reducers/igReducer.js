@@ -3,6 +3,7 @@ const initialState = {
   error: null,
   feed: [],
   results: [],
+  selected: [],
 }; 
 
 const igReducer = (state=initialState, action) => {
@@ -36,6 +37,26 @@ const igReducer = (state=initialState, action) => {
     case "SEARCH_TAG_FULFILLED": {
       return Object.assign({}, state, { 
         results: action.payload
+      })
+    }
+    case "SELECT_PHOTOS_REJECTED": {
+      return Object.assign({}, state, { 
+        error: action.payload
+      })
+    }
+    case "SELECT_PHOTOS_FULFILLED": {
+      return Object.assign({}, state, { 
+        selected: action.payload
+      })
+    }
+    case "FETCH_PHOTOS_REJECTED": {
+      return Object.assign({}, state, { 
+        error: action.payload
+      })
+    }
+    case "FETCH_PHOTOS_FULFILLED": {
+      return Object.assign({}, state, { 
+        selected: action.payload
       })
     }
     default: {

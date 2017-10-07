@@ -18,13 +18,15 @@ class IgFeed extends Component {
 
 
   render() {
-    console.log('this is token', this.props.token);
     return (
-      <div col-sm-3>
-        {this.props.feed.map(image => (
-          <IgImage src={image.images.low_resolution.url} />
-        ))}
-      </div>
+      <div>
+        <h3>Select photos from your feed</h3>
+        <div className='col-sm-3'>
+          {this.props.feed.map(image => (
+            <IgImage src={image.images.low_resolution.url} />
+          ))}
+        </div>
+    </div>
     )
   }
  }
@@ -32,7 +34,8 @@ class IgFeed extends Component {
 const igState = (store) => {
   return {
     token: store.Instagram.token,
-    feed: store.Instagram.feed
+    feed: store.Instagram.feed,
+    selected: store.Instagram.selected
   };
 };
 

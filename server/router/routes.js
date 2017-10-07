@@ -43,4 +43,10 @@ router.route('/instagram/refresh')
 router.route('/instagram/search')
   .get(igCtrl.searchTag)
 
+router.route('/instagram/photos/:userId')
+  .get(igCtrl.getSelected)
+
+router.route('/instagram/photos/:userId')
+  .post(igCtrl.postSelected)
+
 module.exports = router;

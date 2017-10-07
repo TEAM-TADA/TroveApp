@@ -1,5 +1,6 @@
 const client = require('../../server/server')
 const axios = require('axios')
+const { Ig } = require('../../db/model/dataModel')
 
 const authUrl = 'https://api.instagram.com/oauth/authorize/?client_id=7c000611357a488ab02d7afc86b47909&redirect_uri=http://localhost:3000/auth/instagram/callback&response_type=token'
 const feedUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_token='
@@ -11,8 +12,6 @@ module.exports = {
     //   if (result) {
     //     res.send({"cached feed": result, "source": "redis cache"})
     //   } else {
-      console.log('server request');
-      console.log('token', req.query.token)
         axios.get(feedUrl + req.query.token) 
           .then((response) => { 
             console.log('this is response', response);
@@ -42,6 +41,31 @@ module.exports = {
       })
       .catch(err => {
         res.status(500).send(err);
+      })
+  },
+  getSelected: (req, res) => {
+    Ig.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+      .then(data => {
+        res.status(201).send(data)
+      })
+      .catch(err => {
+        console.log('get photos err', err)
+      })
+  },
+  postSelected: (req, res) => {
+    Ig.create({
+      userId: req.params.userId,
+      photos: req.body.photos,
+    })
+      .then(data => {
+        res.status(201).send(data)
+      })
+      .catch(err => {
+        console.log('post photos err', err)
       })
   }
 }
