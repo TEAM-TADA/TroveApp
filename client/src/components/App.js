@@ -16,7 +16,7 @@ import Item from './Home/Item';
 import SearchResult from './Search/SearchResult';
 import UserWardrobe from './UserWardrobe/UserWardrobe';
 import Chat from './chat/chat';
-import Instagram from './Instagram/Instagram'
+import IgLogin from './Instagram/IgLogin'
 import IgFeed from './Instagram/IgFeed'
 
 import * as cartActions from '../actions/cartActions';
@@ -56,8 +56,8 @@ class App extends Component {
               <Men />)} />
             <Route exact path='/women' component={() => (
               <Women />)} />
-            <Route exact path='/instagram' component={() => (
-              <Instagram/>)} />
+            <Route exact path='/iglogin' component={() => (
+              <IgLogin/>)} />
             <Route exact path='/igfeed' component={() => (<IgFeed />)} />
             <Route exact path='/account' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/wardrobe' component={() => (<Dashboard history={history} />)} />

@@ -7,7 +7,7 @@ const feedUrl = 'https://api.instagram.com/v1/users/self/media/recent/?access_to
 
 module.exports = {
   getFeed: (req, res) => {
-    // client.get(req.params.userEmail, (err, result) => {
+    // client.get(req.query.token, (err, result) => {
     //   if (result) {
     //     res.send({"cached feed": result, "source": "redis cache"})
     //   } else {
@@ -16,7 +16,7 @@ module.exports = {
         axios.get(feedUrl + req.query.token) 
           .then((response) => { 
             console.log('this is response', response);
-            // client.set(req.params.userEmail, data);
+            // client.set(req.query.token, response.data);
             res.send({"feed": response.data, "source": "instagram api"});
           })
           .catch(err => {

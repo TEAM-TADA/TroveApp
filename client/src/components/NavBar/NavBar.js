@@ -51,7 +51,9 @@ class NavBar extends Component {
               <NavLink exact activeClassName="active" className="nav-link nav-title" to='/women' >
                 WOMEN
               </NavLink>
-              <NavLink exact activeClassName="active" className="nav-link nav-title" to='/instagram' >
+              </li>
+              <li>
+              <NavLink exact activeClassName="active" className="nav-link nav-title" to='/iglogin' >
                 INSTAGRAM
               </NavLink>
               </li>

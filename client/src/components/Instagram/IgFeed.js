@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
+import IgImage from './igImage'
+
 import * as igActions from '../../actions/igActions'
 
 class IgFeed extends Component {
@@ -11,16 +13,16 @@ class IgFeed extends Component {
 
   componentDidMount() {
     const token = window.location.href.split('=')[1];
-    console.log('type of token', typeof token);
     this.props.igActions.getFeed(token);
-    console.log('this is feed', this.props.feed);
   }
 
+
   render() {
+    console.log('this is token', this.props.token);
     return (
-      <div>
+      <div col-sm-3>
         {this.props.feed.map(image => (
-          <img src={image.images.low_resolution.url}/>
+          <IgImage src={image.images.low_resolution.url} />
         ))}
       </div>
     )
