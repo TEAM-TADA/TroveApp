@@ -88,7 +88,6 @@ class App extends Component {
   }
 }
 
-
 const appDispatch = (dispatch) => {
   return {
     itemActions: bindActionCreators(itemActions, dispatch),
