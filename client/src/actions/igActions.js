@@ -37,33 +37,38 @@ export const refresh = (token) => {
 }
 
 export const searchTag = (tag, token) => {
-  axios.get('/api/instagram/search', {
-    params: {
-      tag: tag, 
-      token: token
-    }
-  })
-    .then(({ data }) => {
-      dispatch({type: "SEARCH_TAG_FULFILLED", payload: data});
+  return function(dispatch) {
+    axios.get('/api/instagram/search', {
+      params: {
+        tag: tag, 
+        token: token
+      }
     })
-    .catch(err => {
-      dispatch({type: "SEARCH_TAG_REJECTED", payload: err});
-    })
+      .then(({ data }) => {
+        dispatch({type: "SEARCH_TAG_FULFILLED", payload: data});
+      })
+      .catch(err => {
+        dispatch({type: "SEARCH_TAG_REJECTED", payload: err});
+      })
+  }
 }
 
-export const submitPhotos = (photos, userId) => {
-  axios.post('/api/instgram/photos/' + userId, {
-    photos: photos
-  })
-  .then(({ data }) => {
-    dispatch({type: "POST_PHOTOS_FULFILLED", payload: data});
-  })
-  .catch(err => {
-    dispatch({type: "POST_PHOTOS_REJECTED", payload: err});
-  })
+export const submitPhotos = (photos) => {
+  return function(dispatch) {
+  // axios.post('/api/instgram/photos/' + userId, {
+  //   photos: photos
+  // })
+  // .then(({ data }) => {
+    dispatch({type: "SELECT_PHOTOS_FULFILLED", payload: photos});
+  // })
+  // .catch(err => {
+  //   dispatch({type: "SELECT_PHOTOS_REJECTED", payload: err});
+  // })
+  }
 }
 
 export const getPhotos = (userId) => {
+  return function(dispatch) {
   axios.get('api/instagram/photos/' + userId)
     .then(({ data }) => {
       dispatch({type: "FETCH_PHOTOS_FULFILLED", payload: data});
@@ -71,4 +76,5 @@ export const getPhotos = (userId) => {
     .catch(err => {
       dispatch({type: "FETCH_PHOTOS_REJECTED", payload: err});
     })
+  }
 }

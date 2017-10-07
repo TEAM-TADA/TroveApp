@@ -18,6 +18,7 @@ import UserWardrobe from './UserWardrobe/UserWardrobe';
 import Chat from './chat/chat';
 import IgLogin from './Instagram/IgLogin'
 import IgFeed from './Instagram/IgFeed'
+import TroveFeed from './Instagram/TroveFeed'
 
 import * as cartActions from '../actions/cartActions';
 import * as itemActions from '../actions/itemsAction';
@@ -59,6 +60,7 @@ class App extends Component {
             <Route exact path='/iglogin' component={() => (
               <IgLogin/>)} />
             <Route exact path='/igfeed' component={() => (<IgFeed />)} />
+            <Route exact path='/trovefeed' component={() => (<TroveFeed />)} />
             <Route exact path='/account' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/wardrobe' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/archive' component={() => (<Dashboard history={history} />)} />

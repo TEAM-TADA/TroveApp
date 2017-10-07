@@ -9,25 +9,8 @@ class IgImage extends Component {
   constructor() {
     super(); 
     this.state = {
-      isSelected: false,
-      selected: []
+      isSelected: false
     }
-  }
-
-  select() {
-    if (!this.state.isSelected) {
-      this.setState({isSelected: !this.state.isSelected});
-      this.state.selected.push(this.props.src);
-    }
-    if (this.state.isSelected) {
-      this.setState({isSelected: !this.state.isSelected});
-      this.state.selected.splice(this.state.selected.indexOf(this.props.src), 1);
-    }
-    console.log('selected images', this.state.selected);
-  }
-
-  handleSubmit() {
-    this.props.igActions.submitPhotos(selected);
   }
 
   render() {
@@ -36,7 +19,11 @@ class IgImage extends Component {
         <img 
           src={this.props.src}
           style={this.state.isSelected ? {border: '1px solid #021a40'} : {border: 'none'}}
-          onClick={this.select.bind(this)}
+          onClick={(e) => {
+              e.preventDefault();
+              this.props.selectPhoto.call(null, this.props.src, this.state.isSelected);
+              this.setState({isSelected: !this.state.isSelected});
+            }}
         />
       </div>
     )
@@ -50,13 +37,13 @@ class IgImage extends Component {
 //   };
 // };
 // 
-const igDispatch = (dispatch) => {
-  return {
-    igActions: bindActionCreators(igActions, dispatch)
-  }
-}
+// const igDispatch = (dispatch) => {
+//   return {
+//     igActions: bindActionCreators(igActions, dispatch)
+//   }
+// }
 
-export default connect(null, igDispatch)(IgImage);
+export default IgImage;
 
 
 
