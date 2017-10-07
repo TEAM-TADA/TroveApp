@@ -34,13 +34,13 @@ router.route('/renttrx/item/:item_id')
 router.route('/renttrx/renter/:renter_id')
   .get(rentTrxCtrl.getRenter)
 
-router.route('/instagram/feed/:userEmail')
+router.route('/instagram/feed')
   .get(igCtrl.getFeed)
 
-  router.route('/instagram/refresh/:userEmail')
+router.route('/instagram/refresh')
   .get(igCtrl.refresh)
 
-router.route('/instagram/search/')
+router.route('/instagram/search')
   .get(igCtrl.searchTag)
 
 module.exports = router;

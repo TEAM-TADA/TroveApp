@@ -5,22 +5,23 @@ const path = require('path');
 const db = require('../db/db');
 const http = require('http');
 const socketIo = require('socket.io');
+const cors = require ('cors');
+
 require('../db/model/dataModel')
 
 const route = require('../server/router/routes')
 const PORT = 3000;
 
-const app = express()
+const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 const redis = require('redis')
-
-const app = express();
 const client = redis.createClient(); 
 
 app.use(parser.json())
 app.use(parser.urlencoded({extended: true}))
 app.use(morgan('dev'))
+app.use(cors())
 app.use('/api', route)
 app.use(express.static(path.resolve(__dirname, '../client/static')))
 app.get('/*', function (req, res) {
@@ -41,8 +42,9 @@ io.on('connection', socket => {
   })
 })
 server.listen(PORT, () => console.log('listening on port ' + PORT));
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`)
-})
+
+// app.listen(PORT, () => {
+//   console.log(`Listening on port ${PORT}`)
+// })
 
 module.exports = client; 

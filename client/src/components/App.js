@@ -16,9 +16,12 @@ import Item from './Home/Item';
 import SearchResult from './Search/SearchResult';
 import UserWardrobe from './UserWardrobe/UserWardrobe';
 import Chat from './chat/chat';
+import Instagram from './Instagram/Instagram'
+import IgFeed from './Instagram/IgFeed'
 
 import * as cartActions from '../actions/cartActions';
 import * as itemActions from '../actions/itemsAction';
+import * as igActions from '../actions/igActions'
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +56,9 @@ class App extends Component {
               <Men />)} />
             <Route exact path='/women' component={() => (
               <Women />)} />
+            <Route exact path='/instagram' component={() => (
+              <Instagram/>)} />
+            <Route exact path='/igfeed' component={() => (<IgFeed />)} />
             <Route exact path='/account' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/wardrobe' component={() => (<Dashboard history={history} />)} />
             <Route exact path='/archive' component={() => (<Dashboard history={history} />)} />
@@ -84,7 +90,8 @@ class App extends Component {
 const appDispatch = (dispatch) => {
   return {
     itemActions: bindActionCreators(itemActions, dispatch),
-    cartActions: bindActionCreators(cartActions, dispatch)
+    cartActions: bindActionCreators(cartActions, dispatch),
+    igActions: bindActionCreators(igActions, dispatch)
   };
 };
 
