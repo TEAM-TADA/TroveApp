@@ -33,15 +33,29 @@ app.get('/*', function (req, res) {
 // })
 io.on('connection', socket => {
   socket.on('message', message => {
-    console.log('server received message ');
-    socket.broadcast.emit('message', {
+    console.log('server received message ', io.engine.clientsCount);
+    console.log('this is the message room', message);
+    socket.broadcast.to(message.room.toString()).emit('message', {
       text: message.text,
       // from: socket.id.slice(8)
       from: message.from,
     })
   })
+  socket.on('subscribe', function(room) {
+    console.log('joining room', room);
+    socket.join(room);
+  })
+  console.log('user connected', io.engine.clientsCount)
 })
+
+io.on('disconnect', socket => {
+  console.log('user disconnected', io.engine.clientsCount);
+})
+
+
 server.listen(PORT, () => console.log('listening on port ' + PORT));
+  console.log(`Listening on port ${PORT}`)
+})
 
 // app.listen(PORT, () => {
 //   console.log(`Listening on port ${PORT}`)
