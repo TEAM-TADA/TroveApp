@@ -25,7 +25,8 @@ class Login extends Component {
       document.getElementById('txtPassword').value = '';
     }
   
-    logout() {
+    googleLogin() {
+      this.props.actions.googleLogin();
     }
   
     //Sign up
@@ -76,6 +77,11 @@ class Login extends Component {
                   e.preventDefault();
                   this.login()}}
                 >LOGIN</button>
+                <button id="btnLogin" className="btn google-btn-color btn-lg btn-block" type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.actions.googleLogin()}}
+                >LOGIN WITH GOOGLE</button>
               </div>
             </div>
             <div className='col-md-5 register'>
@@ -105,6 +111,11 @@ class Login extends Component {
                   e.preventDefault();
                   this.signUp()}}
                 className="btn signin-btn-color btn-lg btn-block" type="submit">REGISTER</button>
+                <button id="btnLogin" className="btn google-btn-color btn-lg btn-block" type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.actions.googleSignup()}}
+                >SIGNUP WITH GOOGLE</button>
               </div>
             </div>
           </div>
