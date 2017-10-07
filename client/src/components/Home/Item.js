@@ -32,11 +32,11 @@ class Item extends Component {
     this.props.actions.fetchUser(this.props.location.params.itemInfo);
     this.props.userInfo(this.props.location.params.itemInfo.rentee_id);
     console.log('made it to items')
+    console.log('ITEM PROPS:', this.props);
   }
-  componentWillMount() {
-    // this.socket = io('/')
-  }
-
+  // componentWillMount() {
+  //   console.log('ITEM PROPS:', this.props);
+  // }
   handleSubmit (event) {
     // event.preventDefault();
     console.log('ROOM ID', this.props.match.params.item_id);
